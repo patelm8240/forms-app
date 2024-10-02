@@ -1,0 +1,31 @@
+<div class="container mt-4">
+
+    <div class="row">
+        <div class="col-7">
+            <h2>Form 2</h2>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <label class="question-title">Question 1</label>
+                <div class="form-check">
+                    <input id="desc1" class="form-check-input" type="checkbox" formControlName="checkbox1">
+                    <label for="desc1" class="form-check-label">DESCRIPTION 1</label>
+                </div>
+                <label class="question-title">Question 2</label>
+                <div class="form-check">
+                    <input id="desc2" class="form-check-input" type="checkbox" formControlName="checkbox2">
+                    <label for="desc2" class="form-check-label">DESCRIPTION 2</label>
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="field1" formControlName="field1" placeholder="Field number 1">
+                    <div *ngIf="form.get('field1')?.hasError('required')" class="text-danger">
+                        Field number 1 is required
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Submit</button>
+            </form>
+        </div>
+        <div class="col-5">
+            <app-notes (notesChanged)="onNotesChanged($event)"></app-notes>
+        </div>
+    </div>
+
+</div>

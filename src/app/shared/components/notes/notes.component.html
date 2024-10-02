@@ -1,0 +1,6 @@
+<div class="container">
+    <h2><i class="bi bi-file-earmark-text notes-icon"></i> Notes</h2>
+    <form [formGroup]="notesForm">
+        <textarea class="form-control" formControlName="notes" rows="6" (blur)="onNotesChange()"></textarea>
+    </form>
+</div>

@@ -1,0 +1,5 @@
+::ng-deep .mat-mdc-snack-bar-container:hover .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled) {
+    color: #333;
+    --mat-text-button-state-layer-color: #fff;
+    --mat-text-button-ripple-color: #fff;
+}
