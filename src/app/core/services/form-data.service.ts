@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ErrorHandlerService } from './error-handler.service';
+import { FormOneData, FormTwoData } from '../models/form-data.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class FormDataService {
 
   constructor(private http: HttpClient, private errorHandler: ErrorHandlerService) { }
 
-  submitForm(formData: any): Observable<any> {
+  submitForm(formData: FormOneData | FormTwoData): Observable<any> {
     console.log('Submitting form data:', formData);
     return this.http.post(`${this.apiUrl}/submit`, formData).pipe(
       catchError((error: HttpErrorResponse) => {

@@ -24,7 +24,7 @@
             </form>
         </div>
         <div class="col-5">
-            <app-notes (notesChanged)="onNotesChanged($event)"></app-notes>
+            <app-notes [initialNotes]="notes" (notesChanged)="onNotesChanged($event)"></app-notes>
         </div>
     </div>
 

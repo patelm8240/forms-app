@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrl: './notes.component.scss'
 })
 export class NotesComponent {
-  initialNotes: string = '';
+  @Input() initialNotes: string = '';
   @Output() notesChanged = new EventEmitter<string>();
 
   notesForm: FormGroup;

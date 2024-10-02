@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormDataService } from '../../../core/services/form-data.service';
+import { FormOneData } from '../../../core/models/form-data.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-form-one',
@@ -9,13 +11,13 @@ import { FormDataService } from '../../../core/services/form-data.service';
 export class FormOneComponent {
   notes: string = '';
 
-  constructor(private formDataService: FormDataService) { }
+  constructor(private formDataService: FormDataService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
 
   onSubmit(formData: any) {
-    const completeData = {
+    const completeData: FormOneData = {
       ...formData,
       notes: this.notes
     };
@@ -23,6 +25,9 @@ export class FormOneComponent {
       next: response => {
         console.log('Form submitted successfully', response)
         this.notes = '';
+        this.snackBar.open('Form submitted successfully', 'Close', {
+          duration: 5000,
+        });
       },
       error: error => console.error('Error submitting form:', error)
     });

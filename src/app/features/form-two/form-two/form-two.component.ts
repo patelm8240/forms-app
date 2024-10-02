@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormDataService } from '../../../core/services/form-data.service';
+import { FormTwoData } from '../../../core/models/form-data.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-form-two',
@@ -8,13 +10,17 @@ import { FormDataService } from '../../../core/services/form-data.service';
   styleUrl: './form-two.component.scss'
 })
 export class FormTwoComponent {
-  form: FormGroup;
+  form!: FormGroup;
   notes: string = '';
 
   constructor(
     private fb: FormBuilder,
-    private formDataService: FormDataService
+    private formDataService: FormDataService,
+    private snackBar: MatSnackBar
   ) {
+  }
+
+  ngOnInit() {
     this.form = this.fb.group({
       checkbox1: [false],
       checkbox2: [false],
@@ -22,11 +28,9 @@ export class FormTwoComponent {
     });
   }
 
-  ngOnInit() { }
-
   onSubmit() {
     if (this.form.valid) {
-      const formData = {
+      const formData: FormTwoData = {
         ...this.form.value,
         notes: this.notes
       };
@@ -35,6 +39,9 @@ export class FormTwoComponent {
           console.log('Form submitted successfully', response);
           this.form.reset();
           this.notes = '';
+          this.snackBar.open('Form submitted successfully', 'Close', {
+            duration: 5000,
+          });
         },
         error: error => console.error('Error submitting form:', error)
       });
