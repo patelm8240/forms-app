@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -7,21 +7,29 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrl: './notes.component.scss'
 })
 export class NotesComponent {
-  @Input() initialNotes: string = '';
+  @Input() notes: string = '';
+  @Input() resetTrigger: number = 0;
   @Output() notesChanged = new EventEmitter<string>();
 
   notesForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
     this.notesForm = this.fb.group({
-      notes: ['', Validators.required]
+      notes: ['']
     });
   }
 
-  ngOnInit() {
-    this.notesForm.patchValue({ notes: this.initialNotes });
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['notes']) {
+      this.notesForm.patchValue({ notes: this.notes });
+    }
+    if (changes['resetTrigger'] && !changes['resetTrigger'].firstChange) {
+      this.notesForm.patchValue({ notes: '' });
+    }
   }
+
   onNotesChange() {
     this.notesChanged.emit(this.notesForm.get('notes')?.value);
   }
+
 }

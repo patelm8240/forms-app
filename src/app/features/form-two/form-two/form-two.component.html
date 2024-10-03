@@ -16,7 +16,7 @@
                 </div>
                 <div class="mb-3">
                     <input type="text" class="form-control" id="field1" formControlName="field1" placeholder="Field number 1">
-                    <div *ngIf="form.get('field1')?.hasError('required')" class="text-danger">
+                    <div *ngIf="form.get('field1')?.hasError('required') && (form.get('field1')?.dirty || form.get('field1')?.touched)" class="text-danger">
                         Field number 1 is required
                     </div>
                 </div>
@@ -24,7 +24,7 @@
             </form>
         </div>
         <div class="col-5">
-            <app-notes [initialNotes]="notes" (notesChanged)="onNotesChanged($event)"></app-notes>
+            <app-notes [notes]="notes" [resetTrigger]="resetTrigger" (notesChanged)="onNotesChanged($event)"></app-notes>
         </div>
     </div>
 

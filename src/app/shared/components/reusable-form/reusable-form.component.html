@@ -2,14 +2,14 @@
     <div class="mb-3">
         <label for="field1" class="form-label">Field number 1</label>
         <input type="text" class="form-control" id="field1" formControlName="field1">
-        <div *ngIf="form.get('field1')?.hasError('required')" class="text-danger">
+        <div *ngIf="form.get('field1')?.hasError('required') && (form.get('field1')?.dirty || form.get('field1')?.touched)" class="text-danger">
             Field number 1 is required
         </div>
     </div>
     <div class="mb-3">
         <label for="field2" class="form-label">Field number 2</label>
         <input type="text" class="form-control" id="field2" formControlName="field2">
-        <div *ngIf="form.get('field2')?.hasError('required')" class="text-danger">
+        <div *ngIf="form.get('field2')?.hasError('required') && (form.get('field2')?.dirty || form.get('field2')?.touched)" class="text-danger">
             Field number 2 is required
         </div>
     </div>

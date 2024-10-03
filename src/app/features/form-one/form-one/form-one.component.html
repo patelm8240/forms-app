@@ -5,7 +5,7 @@
             <app-reusable-form (formSubmit)="onSubmit($event)"></app-reusable-form>
         </div>
         <div class="col-5">
-            <app-notes [initialNotes]="notes" (notesChanged)="onNotesChanged($event)"></app-notes>
+            <app-notes [notes]="notes" [resetTrigger]="resetTrigger" (notesChanged)="onNotesChanged($event)"></app-notes>
         </div>
     </div>
 </div>

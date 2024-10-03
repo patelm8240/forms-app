@@ -12,6 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class FormTwoComponent {
   form!: FormGroup;
   notes: string = '';
+  resetTrigger: number = 0;
 
   constructor(
     private fb: FormBuilder,
@@ -39,6 +40,7 @@ export class FormTwoComponent {
           console.log('Form submitted successfully', response);
           this.form.reset();
           this.notes = '';
+          this.resetTrigger++;
           this.snackBar.open('Form submitted successfully', 'Close', {
             duration: 5000,
           });

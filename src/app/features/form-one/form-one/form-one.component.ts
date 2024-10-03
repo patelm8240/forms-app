@@ -10,6 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class FormOneComponent {
   notes: string = '';
+  resetTrigger: number = 0;
 
   constructor(private formDataService: FormDataService, private snackBar: MatSnackBar) { }
 
@@ -25,6 +26,7 @@ export class FormOneComponent {
       next: response => {
         console.log('Form submitted successfully', response)
         this.notes = '';
+        this.resetTrigger++;
         this.snackBar.open('Form submitted successfully', 'Close', {
           duration: 5000,
         });
